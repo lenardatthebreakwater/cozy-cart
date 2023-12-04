@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	    	<title>Register</title>
+	    	<link rel="stylesheet" href="#">
+	</head>
+	<body>
+		<form action="{{ url_for('customer.register_get') }}" method="post">
+			{{ form.hidden_tag() }}
+
+			{{ form.username.label }}
+			{{ form.username }}
+			{% if form.username.errors %}
+			{% for error in form.username.errors%}
+			<span>{{ error }}</span>
+			{% endfor %}
+			{% endif %}
+
+			{{ form.email.label }}
+			{{ form.email }}
+			{% if form.email.errors %}
+			{% for error in form.email.errors%}
+			<span>{{ error }}</span>
+			{% endfor %}
+			{% endif %}
+
+			{{ form.password.label }}
+			{{ form.password }}
+			{% if form.password.errors %}
+			{% for error in form.password.errors%}
+			<span>{{ error }}</span>
+			{% endfor %}
+			{% endif %}
+
+			{{ form.confirm.label }}
+			{{ form.confirm }}
+			{% if form.confirm.errors %}
+			{% for error in form.confirm.errors%}
+			<span>{{ error }}</span>
+			{% endfor %}
+			{% endif %}
+
+			{{ form.country.label }}
+			{{ form.country }}
+			{% if form.country.errors %}
+			{% for error in form.country.errors%}
+			<span>{{ error }}</span>
+			{% endfor %}
+			{% endif %}
+
+			{{ form.city.label }}
+			{{ form.city }}
+			{% if form.city.errors %}
+			{% for error in form.city.errors%}
+			<span>{{ error }}</span>
+			{% endfor %}
+			{% endif %}
+
+			{{ form.contact.label }}
+			{{ form.contact }}
+			{% if form.contact.errors %}
+			{% for error in form.contact.errors%}
+			<span>{{ error }}</span>
+			{% endfor %}
+			{% endif %}
+
+			{{ form.address.label }}
+			{{ form.address }}
+			{% if form.address.errors %}
+			{% for error in form.address.errors%}
+			<span>{{ error }}</span>
+			{% endfor %}
+			{% endif %}
+
+			{{ form.zipcode.label }}
+			{{ form.zipcode }}
+			{% if form.zipcode.errors %}
+			{% for error in form.zipcode.errors%}
+			<span>{{ error }}</span>
+			{% endfor %}
+			{% endif %}
+
+			{{ form.submit }}
+		</form>
+	</body>
+</html>

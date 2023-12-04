@@ -1,0 +1,5 @@
+env
+instance
+shop/__pycache__
+shop/blueprints/__pycache__
+
