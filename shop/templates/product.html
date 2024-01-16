@@ -14,7 +14,10 @@
 		<img src="../static/christmas_tree.jpg">
 		<h3>Stock: 2</h3>
 		<h3>Cost: Php 1000</h3>
-		<form method="post" action="/cart">
+		<h3>Description</h3>
+		<p>A sexy looking christmas tree</p>
+		<form method="post" action="product/1/add_to_cart">
+			<input type="hidden" value="Christmas Tree">
 			<input type="number" name="quantity" max="10" min="1" value="1">
 			<button type="submit">Add to Cart</button>
 		</form>
