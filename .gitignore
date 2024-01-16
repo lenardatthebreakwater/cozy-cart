@@ -1,5 +1,5 @@
 env
 instance
 shop/__pycache__
-shop/blueprints/__pycache__
-
+shop/routes/__pycache__
+test.py

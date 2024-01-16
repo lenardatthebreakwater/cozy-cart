@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Product</title>
+	</head>
+	<style type="text/css">
+		img {
+			height: 500px;
+		}
+	</style>
+	<body>
+		<h2>Christmas Tree</h3>
+		<img src="../static/christmas_tree.jpg">
+		<h3>Stock: 2</h3>
+		<h3>Cost: Php 1000</h3>
+		<form method="post" action="/cart">
+			<input type="number" name="quantity" max="10" min="1" value="1">
+			<button type="submit">Add to Cart</button>
+		</form>
+	</body>
+</html>

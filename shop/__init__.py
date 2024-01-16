@@ -1,9 +1,11 @@
 from flask import Flask
+"""
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
-
+"""
 app = Flask(__name__)
+"""
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///shop.db"
 app.config["SECRET_KEY"] = "cake"
 db = SQLAlchemy(app)
@@ -16,9 +18,9 @@ from .models import User
 def load_user(user_id):
 	user = User.query.filter_by(id=user_id).first()
 	return user
+"""
+from shop.routes import home_blueprint
+app.register_blueprint(home_blueprint)
 
-from shop.blueprints import home
-app.register_blueprint(home)
-
-from shop.blueprints import user
-app.register_blueprint(user)
+from shop.routes import product_blueprint
+app.register_blueprint(product_blueprint)
