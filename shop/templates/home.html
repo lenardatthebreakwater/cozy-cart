@@ -3,50 +3,18 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Home</title>
-		<style>
-			img {
-				height: 300px;
-			}
-		</style>
 	</head>
 	<body>
-		<section>
-			{% with messages = get_flashed_messages(with_categories=True) %}
-			{% if messages %}
-			<ul class="mb-5">
-				{% for category, message in messages %}
-				<li>{{ message }}</li>
-				{% endfor %}
-			</ul>
-			{% endif %}
-			{% endwith %}
-
-			{% if products %}
-			{% for product in products.items %}
-			<article>
-				<img src="{{ url_for('static', filename='product_images/' + product.image) }}">
-				<h2>{{ product.name }}</h2>
-			</article>
-			{% endfor %}
-			{% endif %}
-		</section>
-
-		<nav>
-			<ul class="pagination-list">
-				{% for page_num in products.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
-				{% if page_num %}
-				<li>
-					{% if page_num == page %}
-					<a href="/?page={{ page_num }}" class="pagination-link is-current">{{ page_num }}</a>
-					{% else %}
-					<a href="/?page={{ page_num }}" class="pagination-link">{{ page_num }}</a>
-					{% endif %}
-				</li>
-				{% else %}
-				...
-				{% endif %}
-				{% endfor %}
-			</ul>
-		</nav>
+		{% if products %}
+		{% for product in products %}
+		<article>
+			<a href="{{url_for('product_blueprint.product', product_id=product.id)}}">
+				<img src="{{url_for('static', filename='product_images/'+product.img_filename)}}">
+			</a>
+			<p>{{product.name}}</p>
+			<p>{{product.cost}}</p>
+		</article>
+		{% endfor %}
+		{% endif %}
 	</body>
 </html>

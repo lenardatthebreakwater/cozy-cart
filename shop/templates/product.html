@@ -2,24 +2,38 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Product</title>
+		<title>{{product.name}}</title>
 	</head>
-	<style type="text/css">
-		img {
-			height: 500px;
-		}
-	</style>
 	<body>
-		<h2>Christmas Tree</h3>
-		<img src="../static/christmas_tree.jpg">
-		<h3>Stock: 2</h3>
-		<h3>Cost: Php 1000</h3>
-		<h3>Description</h3>
-		<p>A sexy looking christmas tree</p>
-		<form method="post" action="product/1/add_to_cart">
-			<input type="hidden" value="Christmas Tree">
-			<input type="number" name="quantity" max="10" min="1" value="1">
-			<button type="submit">Add to Cart</button>
+		{% with messages = get_flashed_messages(with_categories=True) %}
+		{% if messages %}
+		<ul>
+			{% for category, message in messages %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		{% endwith %}
+
+		<img src="{{url_for('static', filename='product_images/'+product.img_filename)}}">
+		<p>{{product.name}}</p>
+		<p>Php{{product.cost}}</p>
+		<p>Stock: {{product.stock}}</p>
+		<p>Description:</p>
+		<p>{{product.description}}</p>
+		
+		<form action="{{url_for('product_blueprint.addtocart', product_id=product.id)}}" method="post">
+		  {{form.hidden_tag()}}
+		  
+		  {{form.quantity.label}}
+		  {{form.quantity}}
+		  {% if form.quantity.errors %}
+		  {% for error in form.quantity.errors %}
+		  <span>{{error}}</span>
+		  {% endfor %}
+		  {% endif %}
+		  
+		  {{form.submit}}
 		</form>
 	</body>
 </html>

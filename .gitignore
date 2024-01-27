@@ -2,4 +2,5 @@ env
 instance
 shop/__pycache__
 shop/routes/__pycache__
-test.py
+shop/forms/__pycache__
+shop/models/__pycache__
