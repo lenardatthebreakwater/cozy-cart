@@ -71,3 +71,10 @@ def admin_addproduct():
     flash("Product successfully added")
     return redirect(url_for("admin_blueprint.admin_dashboard"))
   return render_template("admin_addproduct.html", form=form)
+
+@admin_blueprint.route("/admin/logout")
+@login_required
+def logout():
+  logout_user()
+  flash('You have successfully logout', 'danger')
+  return redirect(url_for('product_blueprint.allproducts'))

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Register</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='mystyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="has-background-light">
     <section class="section">
@@ -21,9 +21,9 @@
                         {{ form.name(class="is-size-6 p-1") }}
                     </div>
                     {% if form.name.errors %}
-                    {% for error in form.name.errors %}
-                        <span>{{ error }}</span>
-                    {% endfor %}
+                        {% for error in form.name.errors %}
+                            <span class="has-text-danger">{{ error }}</span>
+                        {% endfor %}
                     {% endif %}
                 </div>
                 
@@ -33,9 +33,9 @@
                         {{ form.password(class="is-size-6 p-1") }}
                     </div>
                     {% if form.password.errors %}
-                    {% for error in form.password.errors %}
-                        <span>{{ error }}</span>
-                    {% endfor %}
+                        {% for error in form.password.errors %}
+                            <span class="has-text-danger">{{ error }}</span>
+                        {% endfor %}
                     {% endif %}
                 </div>
 
@@ -45,9 +45,9 @@
                         {{ form.confirm_password(class="is-size-6 p-1") }}
                     </div>
                     {% if form.confirm_password.errors %}
-                    {% for error in form.confirm_password.errors %}
-                        <span>{{ error }}</span>
-                    {% endfor %}
+                        {% for error in form.confirm_password.errors %}
+                            <span class="has-text-danger">{{ error }}</span>
+                        {% endfor %}
                     {% endif %}    
                 </div>
 
