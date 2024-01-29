@@ -12,7 +12,7 @@ admin_blueprint = Blueprint("admin_blueprint", __name__)
 @admin_blueprint.get("/admin/dashboard")
 @login_required
 def admin_dashboard():
-  return render_template("admin_dashboard.html")
+  return render_template("admin_dashboard.html", title="Admin Dashboard")
 
 @admin_blueprint.route("/admin/register", methods=["GET", "POST"])
 def admin_register():
@@ -29,12 +29,13 @@ def admin_register():
     db.session.commit()
     flash(f'Admin Account successfully created for {form.name.data}', 'success')
     return redirect(url_for("admin_blueprint.admin_login"))
-  return render_template("admin_register.html", form=form)
+  return render_template("admin_register.html", title="Admin Register", form=form)
 
 @admin_blueprint.route("/admin/login", methods=["GET", "POST"])
 def admin_login():
   if current_user.is_authenticated:
     return redirect(url_for("admin_blueprint.admin_dashboard"))
+  admins = Admin.query.all()
   form = AdminLoginForm()
   if form.validate_on_submit():
     admin = Admin.query.filter_by(name=form.name.data).first()
@@ -45,7 +46,7 @@ def admin_login():
     else:
       flash("Login unsuccessful, please check username or password", "danger")
       return redirect(url_for('admin_blueprint.login'))
-  return render_template("admin_login.html", form=form) 
+  return render_template("admin_login.html", title="Admin Login", form=form, admins=admins) 
 
 @admin_blueprint.route("/admin/addproduct", methods=["GET", "POST"])
 @login_required
@@ -70,7 +71,7 @@ def admin_addproduct():
     db.session.commit()
     flash("Product successfully added", "success")
     return redirect(url_for("admin_blueprint.admin_dashboard"))
-  return render_template("admin_addproduct.html", form=form)
+  return render_template("admin_addproduct.html", title="Admin Add Product", form=form)
 
 @admin_blueprint.route("/admin/logout")
 @login_required

@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Cart</title>
-	</head>
-	<body>
+{% extends "base.html" %}
+{% block content %}
 		{% if session["cart"] %}
 		{% for cart_item in session["cart"] %}
 		<article>
@@ -14,5 +9,4 @@
 		</article>
 		{% endfor %}
 		{% endif %}
-	</body>
-</html>
+{% endblock content %}

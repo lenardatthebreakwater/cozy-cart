@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Admin Dashboard</title>
-	</head>
-	<body>
+{% extends "base.html" %}
+{% block content %}
 		{% with messages = get_flashed_messages(with_categories=True) %}
 		{% if messages %}
 		<ul>
@@ -16,5 +11,4 @@
 		{% endwith %}
 
 		<h1>Admin Dashboard</h1>
-	</body>
-</html>
+{% endblock content %}
