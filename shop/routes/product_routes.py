@@ -47,7 +47,7 @@ def addtocart(product_id):
         for i in session["cart"]:
           if i["id"] == cart_item["id"]:
             i["quantity"] += cart_item["quantity"]
-    flash("Item successfully added to Cart")
+    flash("Item successfully added to Cart", "success")
     return redirect(url_for("product_blueprint.product", product_id=product.id))
   else:
     abort(500)

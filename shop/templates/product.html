@@ -2,38 +2,51 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>{{product.name}}</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 	</head>
-	<body>
-		{% with messages = get_flashed_messages(with_categories=True) %}
-		{% if messages %}
-		<ul>
-			{% for category, message in messages %}
-			<li>{{ message }}</li>
-			{% endfor %}
-		</ul>
-		{% endif %}
-		{% endwith %}
+	<body class="has-background-light">
+		<section class="section">
+			<div class="container">
+				{% with messages = get_flashed_messages(with_categories=True) %}
+					{% if messages %}
+						<ul class="mb-4">
+						{% for category, message in messages %}
+							<li><strong class="has-text-{{category}}">{{message}}</strong></li>
+						{% endfor %}
+						</ul>
+					{% endif %}
+				{% endwith %}
+				<div class="columns">
+					<div class="column">
+						<img src="{{url_for('static', filename='product_images/'+product.img_filename)}}" class="big-img">
+					</div>
+					<div class="column">
+						<p class="title is-size-2 mt-6">{{product.name}}</p>
+						<p class="subtitle is-size-4">Php{{product.cost}}</p>
+						<p class="is-size-6 my-6">{{product.description}}</p>
+						<p><strong class="has-text-success">{{product.stock}} left in stock</strong></p>
+						<form action="{{url_for('product_blueprint.addtocart', product_id=product.id)}}" method="post">
+		  					{{form.hidden_tag()}}
+		  					
+		  					<div class="field">
+		  						<div class="control">
+		  							{{form.quantity(class="is-size-5 p-1")}}
+		  						</div>
+		  						{% if form.quantity.errors %}
+		  							{% for error in form.quantity.errors %}
+		  								<span class="has-text-danger">{{error}}</span>
+		  							{% endfor %}
+		  						{% endif %}
+		  					</div>
 
-		<img src="{{url_for('static', filename='product_images/'+product.img_filename)}}">
-		<p>{{product.name}}</p>
-		<p>Php{{product.cost}}</p>
-		<p>Stock: {{product.stock}}</p>
-		<p>Description:</p>
-		<p>{{product.description}}</p>
-		
-		<form action="{{url_for('product_blueprint.addtocart', product_id=product.id)}}" method="post">
-		  {{form.hidden_tag()}}
-		  
-		  {{form.quantity.label}}
-		  {{form.quantity}}
-		  {% if form.quantity.errors %}
-		  {% for error in form.quantity.errors %}
-		  <span>{{error}}</span>
-		  {% endfor %}
-		  {% endif %}
-		  
-		  {{form.submit}}
-		</form>
+		  					{{form.submit(class="button is-danger is-medium")}}
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
 	</body>
 </html>

@@ -57,7 +57,7 @@ def admin_addproduct():
     new_img_filename = random_hex + file_extension
     img_path = os.path.join(app.root_path, "static/product_images", new_img_filename)
     img = Image.open(form.image_file.data)
-    img.thumbnail((350, 300))
+    img.thumbnail((550, 500))
     img.save(img_path)
     new_product = Product(
       name=form.name.data,
@@ -68,7 +68,7 @@ def admin_addproduct():
     )
     db.session.add(new_product)
     db.session.commit()
-    flash("Product successfully added")
+    flash("Product successfully added", "success")
     return redirect(url_for("admin_blueprint.admin_dashboard"))
   return render_template("admin_addproduct.html", form=form)
 

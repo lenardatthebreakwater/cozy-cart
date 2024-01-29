@@ -16,19 +16,15 @@ body {
     margin-left: 250px;
 }
 
-.profile-img {
-    width: 200px;
-    max-width: 200px;
-    height: 200px;
-    max-height: 200px;
-    border: 1px solid black;
-    border-radius: 50%;
+.big-img {
+    width: 500px;
+    max-width: 500px;
+    height: 500px;
+    max-height: 500px;
     object-fit: cover;
-    position: relative;
-    right: 20px;
 }
 
-.medium-profile-img {
+.medium-img {
     width: 135px;
     max-width: 135px;
     height: 135px;
@@ -38,7 +34,7 @@ body {
     objecf-fit: cover;
 }
 
-.small-profile-img {
+.small-img {
     width: 118px;
     max-width: 118px;
     height: 118px;
