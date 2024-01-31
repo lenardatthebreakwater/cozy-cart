@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% if title %}
-        <title>Fask Shop - {{title}}</title>
+        <title>Shop - {{title}}</title>
     {% else %}
         <title>Flask Shop</title>
     {% endif %}
@@ -12,6 +12,32 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="has-background-light">
-    {% block content %}{% endblock %}
+    <nav class="navbar has-shadow is-primary">
+        <div class="navbar-brand ml-5">
+            <a class="navbar-item title">Shop</a>
+            <a id="navBarBurger" class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+
+        <div id="navBarMenu" class="navbar-menu mr-4">
+            <div class="navbar-end">
+                <a href="{{ url_for('product_blueprint.allproducts') }}" class="navbar-item is-size-5">Home</a>
+                <a href="{{ url_for('cart_blueprint.cart') }}" class="navbar-item is-size-5">Cart</a>
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('admin_blueprint.admin_dashboard') }}" class="navbar-item is-size-5">Dashboard</a>
+                    <a href="{{ url_for('admin_blueprint.admin_logout') }}" class="navbar-item is-size-5">Logout</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </section>
 </body>
 </html>

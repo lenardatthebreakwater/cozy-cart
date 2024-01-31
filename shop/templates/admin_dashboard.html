@@ -1,14 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
-		{% with messages = get_flashed_messages(with_categories=True) %}
-		{% if messages %}
-		<ul>
-			{% for category, message in messages %}
-			<li>{{ message }}</li>
-			{% endfor %}
-		</ul>
-		{% endif %}
-		{% endwith %}
+	<section class="section">
+		<div class="container">
+			{% with messages = get_flashed_messages(with_categories=True) %}
+			{% if messages %}
+			<ul>
+				{% for category, message in messages %}
+				<li>{{ message }}</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+			{% endwith %}
 
-		<h1>Admin Dashboard</h1>
+			<h1>Admin Dashboard</h1>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Product Name</th>
+						<th>Stock</th>
+						<th>Cost</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% if products %}
+						{% for product in products %}
+							<tr>
+								<td>{{product.name}}</td>
+								<td>{{product.stock}}</td>
+								<td>{{product.cost}}</td>
+								<td><a href="{{url_for('admin_blueprint.admin_updateproduct', product_id=product.id)}}" class="button is-warning">Update</a></td>
+								<td><a href="{{url_for('admin_blueprint.admin_removeproduct', product_id=product.id)}}" class="button is-danger">Remove</a></td>
+							</tr>
+						{% endfor %}
+					{% endif %}
+				</tbody>
+			</table>
+			<a href="{{url_for('admin_blueprint.admin_addproduct')}}">Add Product</a>
+		</div>
+	</section>
+
 {% endblock content %}

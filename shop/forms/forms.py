@@ -22,7 +22,7 @@ class AdminLoginForm(FlaskForm):
 	submit = SubmitField("Login")
 
 
-class AddProductForm(FlaskForm):
+class AdminAddProductForm(FlaskForm):
 	name = StringField("Product Name", validators=[DataRequired(), Length(min=1)])
 	cost = FloatField("Cost", validators=[DataRequired()])
 	stock = IntegerField("Stock", validators=[DataRequired()])
@@ -39,6 +39,14 @@ class AddProductForm(FlaskForm):
 		if product:
 			raise ValidationError("You already have a product with the same name")
 
+
+class AdminUpdateProductForm(FlaskForm):
+	name = StringField("Product Name", validators=[DataRequired(), Length(min=1)])
+	cost = FloatField("Cost", validators=[DataRequired()])
+	stock = IntegerField("Stock", validators=[DataRequired()])
+	description = TextAreaField("Description", validators=[DataRequired(), Length(min=1)])
+	image_file = FileField("New Product Image", validators=[FileAllowed(["png", "jpg", "jpeg"])])
+	submit = SubmitField("Update Product")
 
 class AddToCartForm(FlaskForm):
   quantity = IntegerField("Quantity", validators=[DataRequired()])

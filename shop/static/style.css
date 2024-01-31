@@ -12,35 +12,11 @@ body {
     resize: none;
 }
 
-.big-margin-left {
-    margin-left: 250px;
-}
-
 .big-img {
     width: 500px;
     max-width: 500px;
     height: 500px;
     max-height: 500px;
-    object-fit: cover;
-}
-
-.medium-img {
-    width: 135px;
-    max-width: 135px;
-    height: 135px;
-    max-height: 135px;
-    border: 1px solid black;
-    border-radius: 50%;
-    objecf-fit: cover;
-}
-
-.small-img {
-    width: 118px;
-    max-width: 118px;
-    height: 118px;
-    max-height: 118px;
-    border: 1px solid black;
-    border-radius: 50%;
     object-fit: cover;
 }
 

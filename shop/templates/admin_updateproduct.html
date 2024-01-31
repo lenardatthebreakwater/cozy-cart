@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+		<section class="section">
+			<div class="container">
+
+				{% with messages = get_flashed_messages(with_categories=True) %}
+				{% if messages %}
+				<ul class="mb-4">
+					{% for category, message in messages %}
+					<li><strong class="has-text-{{category}}">{{message}}</strong></li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+				{% endwith %}
+
+				<form action="{{url_for('admin_blueprint.admin_updateproduct', product_id=product.id)}}" method="post" enctype="multipart/form-data">
+					{{form.hidden_tag()}}
+
+                	<div class="field mb-5">
+                    	{{ form.image_file.label(class="is-size-4") }}
+                    	<div class="control">
+                        	{{ form.image_file(class="is-size-6 p-1") }}
+                    	</div>
+                    	{% if form.image_file.errors %}
+                        	{% for error in form.image_file.errors %}
+                            	<span class="has-text-danger">{{ error }}</span>
+                        	{% endfor %}
+                    	{% endif %} 
+                	</div>
+
+            		<div class="field mb-5">
+                		{{ form.name.label(class="is-size-4") }}
+                		<div class="control">
+                    		{{ form.name(class="is-size-6 p-1") }}
+                		</div>
+                		{% if form.name.errors %}
+                			{% for error in form.name.errors %}
+                    			<span class="has-text-danger">{{ error }}</span>
+                			{% endfor %}
+                		{% endif %} 
+            		</div>
+
+            		<div class="field mb-5">
+                		{{ form.cost.label(class="is-size-4") }}
+                		<div class="control">
+                    		{{ form.cost(class="is-size-6 p-1") }}
+                		</div>
+                		{% if form.cost.errors %}
+                    		{% for error in form.cost.errors %}
+                        		<span class="has-text-danger">{{ error }}</span>
+                    		{% endfor %}
+                		{% endif %} 
+            		</div>
+
+            		<div class="field mb-5">
+                		{{ form.stock.label(class="is-size-4") }}
+                		<div class="control">
+                			{{ form.stock(class="is-size-6 p-1") }}
+                		</div>
+                		{% if form.stock.errors %}
+                    		{% for error in form.stock.errors %}
+                        		<span class="has-text-danger">{{ error }}</span>
+                    		{% endfor %}
+                		{% endif %} 
+            		</div>
+
+                	<div class="field mb-5">
+                    	{{ form.description.label(class="is-size-4") }}
+                    	<div class="control">
+                        	{{ form.description(class="my-textarea p-1") }}
+                    	</div>
+                    	{% if form.description.errors %}
+                        	{% for error in form.description.errors %}
+                            	<span class="has-text-danger">{{ error }}</span>
+                        	{% endfor %}
+                    	{% endif %} 
+                	</div>
+
+					{{ form.submit(class="button is-warning is-medium my-4") }}
+				</form>
+			</div>
+		</section>
+{% endblock content %}

@@ -9,11 +9,13 @@ def allproducts():
 	products = Product.query.all()
 	return render_template("home.html", title="Home", products=products)
 
+
 @product_blueprint.get("/product/<int:product_id>")
 def product(product_id):
   product = Product.query.get_or_404(product_id)
   form = AddToCartForm()
   return render_template("product.html", title=f"{product.name}", product=product, form=form)
+
 
 """
 Helper funcntion that checks if cart_item which is a dictionary
@@ -24,6 +26,7 @@ def isItemInCartSess(cart_session, cart_item):
     if i["id"] == cart_item["id"]:
       return True
   return False
+
 
 @product_blueprint.post("/product/<int:product_id>/addtocart")
 def addtocart(product_id):
