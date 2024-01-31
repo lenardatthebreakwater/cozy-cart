@@ -1,52 +1,50 @@
 {% extends "base.html" %}
 {% block content %}
-    <section class="section">
-        <div class="container has-text-centered">
-            {% with messages = get_flashed_messages(with_categories=True) %}
-                {% if messages %}
-                    <ul>
-                    {% for category, message in messages %}
-                        <li class="is-size-5 has-text-{{ category }}-dark has-text-weight-light">{{ message }}</li>
-                    {% endfor %}
-                    </ul>
-                {% endif %}
-            {% endwith %}
-
-            <h2 class="title is-size-1 mt-4 mb-6">Login</h2>
-
-            <form method="POST" action="{{ url_for('admin_blueprint.admin_login') }}">
-                {{ form.hidden_tag() }}
-
-                <div class="field mb-5">
-                    {{ form.name.label(class="is-size-4") }}
-                    <div class="control">
-                        {{ form.name(class="is-size-6 p-1") }}
-                    </div>
-                    {% if form.name.errors %}
-                        {% for error in form.name.errors %}
-                            <span class="has-text-danger">{{ error }}</span>
+            <div class="has-text-centered">
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% if messages %}
+                        <ul>
+                        {% for category, message in messages %}
+                            <li class="is-size-5 has-text-{{ category }}-dark has-text-weight-light">{{ message }}</li>
                         {% endfor %}
-                    {% endif %} 
-                </div>
-
-                <div class="field">
-                    {{ form.password.label(class="is-size-4") }}
-                    <div class="control">
-                        {{ form.password(class="is-size-6 p-1") }}
-                    </div>
-                    {% if form.password.errors %}
-                        {% for error in form.password.errors %}
-                            <span class="has-text-danger">{{ error }}</span>
-                        {% endfor %}
+                        </ul>
                     {% endif %}
-                </div>
+                {% endwith %}
 
-                {{ form.submit(class="button is-success is-medium my-6") }}
-            </form>
+                <h2 class="title is-size-1 mt-4 mb-6">Login</h2>
 
-            {% if not admins %}
-                <p><strong>Haven't created an admin account yet? Click <a href="{{ url_for('admin_blueprint.admin_register') }}" class="has-text-blue">here</a></strong></p>
-            {% endif %}
-        </div>
-    </section>
+                <form method="POST" action="{{ url_for('admin_blueprint.admin_login') }}">
+                    {{ form.hidden_tag() }}
+
+                    <div class="field mb-5">
+                        {{ form.name.label(class="is-size-4") }}
+                        <div class="control">
+                            {{ form.name(class="is-size-6 p-1") }}
+                        </div>
+                        {% if form.name.errors %}
+                            {% for error in form.name.errors %}
+                                <span class="has-text-danger">{{ error }}</span>
+                            {% endfor %}
+                        {% endif %} 
+                    </div>
+
+                    <div class="field">
+                        {{ form.password.label(class="is-size-4") }}
+                        <div class="control">
+                            {{ form.password(class="is-size-6 p-1") }}
+                        </div>
+                        {% if form.password.errors %}
+                            {% for error in form.password.errors %}
+                                <span class="has-text-danger">{{ error }}</span>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    {{ form.submit(class="button is-success is-medium my-6") }}
+                </form>
+
+                {% if not admins %}
+                    <p><strong>Haven't created an admin account yet? Click <a href="{{ url_for('admin_blueprint.admin_register') }}" class="has-text-blue">here</a></strong></p>
+                {% endif %}
+            </div>
 {% endblock content %}

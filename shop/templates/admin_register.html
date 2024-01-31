@@ -1,50 +1,48 @@
 {% extends "base.html" %}
 {% block content %}
-    <section class="section">
-        <div class="container has-text-centered">
-            <h2 class="title is-size-1 mb-6">Create an Admin Account</h2>
+            <div class="has-text-centered">
+                <h2 class="title is-size-1 mb-6">Create an Admin Account</h2>
 
-            <form method="POST" action="{{ url_for('admin_blueprint.admin_register') }}">
-                {{ form.hidden_tag() }}
+                <form method="POST" action="{{ url_for('admin_blueprint.admin_register') }}">
+                    {{ form.hidden_tag() }}
                 
-                <div class="field mb-5">
-                    {{ form.name.label(class="is-size-4") }}
-                    <div class="control">
-                        {{ form.name(class="is-size-6 p-1") }}
+                    <div class="field mb-5">
+                        {{ form.name.label(class="is-size-4") }}
+                        <div class="control">
+                            {{ form.name(class="is-size-6 p-1") }}
+                        </div>
+                        {% if form.name.errors %}
+                            {% for error in form.name.errors %}
+                                <span class="has-text-danger">{{ error }}</span>
+                            {% endfor %}
+                        {% endif %}
                     </div>
-                    {% if form.name.errors %}
-                        {% for error in form.name.errors %}
-                            <span class="has-text-danger">{{ error }}</span>
-                        {% endfor %}
-                    {% endif %}
-                </div>
                 
-                <div class="field mb-5">
-                    {{ form.password.label(class="is-size-4") }}
-                    <div class="control">
-                        {{ form.password(class="is-size-6 p-1") }}
+                    <div class="field mb-5">
+                        {{ form.password.label(class="is-size-4") }}
+                        <div class="control">
+                            {{ form.password(class="is-size-6 p-1") }}
+                        </div>
+                        {% if form.password.errors %}
+                            {% for error in form.password.errors %}
+                                <span class="has-text-danger">{{ error }}</span>
+                            {% endfor %}
+                        {% endif %}
                     </div>
-                    {% if form.password.errors %}
-                        {% for error in form.password.errors %}
-                            <span class="has-text-danger">{{ error }}</span>
-                        {% endfor %}
-                    {% endif %}
-                </div>
 
-                <div class="field">
-                    {{ form.confirm_password.label(class="is-size-5") }}
-                    <div classs="control">
-                        {{ form.confirm_password(class="is-size-6 p-1") }}
+                    <div class="field">
+                        {{ form.confirm_password.label(class="is-size-5") }}
+                        <div classs="control">
+                            {{ form.confirm_password(class="is-size-6 p-1") }}
+                        </div>
+                        {% if form.confirm_password.errors %}
+                            {% for error in form.confirm_password.errors %}
+                                <span class="has-text-danger">{{ error }}</span>
+                            {% endfor %}
+                        {% endif %}    
                     </div>
-                    {% if form.confirm_password.errors %}
-                        {% for error in form.confirm_password.errors %}
-                            <span class="has-text-danger">{{ error }}</span>
-                        {% endfor %}
-                    {% endif %}    
-                </div>
 
-                {{ form.submit(class="button is-success is-medium my-6") }}
-            </form>
-        </div>
-    </section>
+                    {{ form.submit(class="button is-success is-medium my-6") }}
+                </form>
+            </div>
 {% endblock content %}

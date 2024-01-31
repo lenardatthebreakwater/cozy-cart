@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-        {% with messages = get_flashed_messages(with_categories=True) %}
+			{% with messages = get_flashed_messages(with_categories=True) %}
         	{% if messages %}
             	<ul>
                 {% for category, message in messages %}
@@ -8,17 +8,19 @@
                 {% endfor %}
             	</ul>
         	{% endif %}
-        {% endwith %}
+        	{% endwith %}
 
-		{% if products %}
-		{% for product in products %}
-		<article>
-			<a href="{{url_for('product_blueprint.product', product_id=product.id)}}">
-				<img src="{{url_for('static', filename='product_images/'+product.img_filename)}}">
-			</a>
-			<p>{{product.name}}</p>
-			<p>{{product.cost}}</p>
-		</article>
-		{% endfor %}
-		{% endif %}
+        	<div class="columns is-multiline my-3">
+				{% if products %}
+				{% for product in products %}
+				<article class="column is-4 pr-4">
+					<a href="{{url_for('product_blueprint.product', product_id=product.id)}}">
+						<img src="{{url_for('static', filename='product_images/'+product.img_filename)}}">
+					</a>
+					<p><strong class="is-size-6">{{product.name}}</strong></p>
+					<p>{{product.cost}}</p>
+				</article>
+				{% endfor %}
+				{% endif %}
+			</div>
 {% endblock content %}

@@ -1,43 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
-		<section class="section">
-			<div class="container">
-				{% with messages = get_flashed_messages(with_categories=True) %}
-					{% if messages %}
-						<ul class="mb-4">
-						{% for category, message in messages %}
-							<li><strong class="has-text-{{category}}">{{message}}</strong></li>
-						{% endfor %}
-						</ul>
-					{% endif %}
-				{% endwith %}
-				<div class="columns">
-					<div class="column">
-						<img src="{{url_for('static', filename='product_images/'+product.img_filename)}}" class="big-img">
-					</div>
-					<div class="column">
-						<p class="title is-size-2 mt-6">{{product.name}}</p>
-						<p class="subtitle is-size-4">Php{{product.cost}}</p>
-						<p class="is-size-6 my-6">{{product.description}}</p>
-						<p><strong class="has-text-success">{{product.stock}} left in stock</strong></p>
-						<form action="{{url_for('product_blueprint.addtocart', product_id=product.id)}}" method="post">
-		  					{{form.hidden_tag()}}
+			{% with messages = get_flashed_messages(with_categories=True) %}
+				{% if messages %}
+					<ul class="mb-4">
+					{% for category, message in messages %}
+						<li><strong class="has-text-{{category}}">{{message}}</strong></li>
+					{% endfor %}
+					</ul>
+				{% endif %}
+			{% endwith %}
+			<div class="columns">
+				<div class="column">
+					<img src="{{url_for('static', filename='product_images/'+product.img_filename)}}" class="big-img">
+				</div>
+				<div class="column">
+					<p class="title is-size-2 mt-6">{{product.name}}</p>
+					<p class="subtitle is-size-4">Php{{product.cost}}</p>
+					<p class="is-size-6 my-6">{{product.description}}</p>
+					<p><strong class="has-text-success">{{product.stock}} left in stock</strong></p>
+					<form action="{{url_for('product_blueprint.addtocart', product_id=product.id)}}" method="post">
+		  				{{form.hidden_tag()}}
 		  					
-		  					<div class="field">
-		  						<div class="control">
-		  							{{form.quantity(class="is-size-5 p-1")}}
-		  						</div>
-		  						{% if form.quantity.errors %}
-		  							{% for error in form.quantity.errors %}
-		  								<span class="has-text-danger">{{error}}</span>
-		  							{% endfor %}
-		  						{% endif %}
+		  				<div class="field">
+		  					<div class="control">
+		  						{{form.quantity(class="is-size-5 p-1")}}
 		  					</div>
+		  					{% if form.quantity.errors %}
+		  						{% for error in form.quantity.errors %}
+		  							<span class="has-text-danger">{{error}}</span>
+		  						{% endfor %}
+		  					{% endif %}
+		  				</div>
 
-		  					{{form.submit(class="button is-danger is-medium")}}
-						</form>
-					</div>
+		  				{{form.submit(class="button is-danger is-medium")}}
+					</form>
 				</div>
 			</div>
-		</section>
 {% endblock content %}

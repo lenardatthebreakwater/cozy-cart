@@ -22,7 +22,7 @@
             </a>
         </div>
 
-        <div id="navBarMenu" class="navbar-menu mr-4">
+        <div id="navBarMenu" class="navbar-menu pr-4">
             <div class="navbar-end">
                 <a href="{{ url_for('product_blueprint.allproducts') }}" class="navbar-item is-size-5">Home</a>
                 <a href="{{ url_for('cart_blueprint.cart') }}" class="navbar-item is-size-5">Cart</a>
@@ -39,5 +39,7 @@
             {% block content %}{% endblock %}
         </div>
     </section>
+
+    <script type="text/javascript" src="{{url_for('static', filename='script.js')}}"></script>
 </body>
 </html>

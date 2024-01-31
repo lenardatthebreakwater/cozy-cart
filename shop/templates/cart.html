@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-		{% if session["cart"] %}
-		{% for cart_item in session["cart"] %}
-		<article>
-			<p>{{cart_item["name"]}}</p>
-			<p>{{cart_item["cost"] * cart_item["quantity"]}}</p>
-			<p>{{cart_item["quantity"]}}</p>
-		</article>
-		{% endfor %}
-		{% endif %}
+			{% if session["cart"] %}
+			{% for cart_item in session["cart"] %}
+			<article>
+				<p>{{cart_item["name"]}}</p>
+				<p>{{cart_item["cost"] * cart_item["quantity"]}}</p>
+				<p>{{cart_item["quantity"]}}</p>
+			</article>
+			{% endfor %}
+			{% endif %}
 {% endblock content %}
