@@ -1,10 +1,14 @@
 from flask import Blueprint, render_template, session, redirect
 from shop.forms import CheckoutForm
 from shop.models import PendingOrder
+from dotenv import load_dotenv
 from shop import fernet
 import requests
 import base64
 import json
+import os
+
+load_dotenv()
 
 cart_blueprint = Blueprint("cart_blueprint", __name__)
 
@@ -66,13 +70,13 @@ def checkout():
       "show_line_items": True
     }}}
 
-    # Load the paymongo secret key from a .env file
+    paymongo_secret_key = os.getenv("PAYMONGO_SECRET_KEY")
     b64encoded_paymongo_secret_key = base64.b64encode(paymongo_secret_key.encode()).decode()
     headers = {"Accept": "application/json", "Content-Type": "application/json", "Authorization": f"Basic {b64encoded_paymongo_secret_key}"}
     response = requests.post(url, json=payload, headers=headers)
     response_dict = json.loads(response.text)
 
-    encrypted_paymongo_checkout_session_id = fernet.encrypt.(response_dict["data"]["id"].encode()).decode()
+    encrypted_paymongo_checkout_session_id = fernet.encrypt(response_dict["data"]["id"].encode()).decode()
     if "checkout_session_id" not in session:
       session["checkout_session_id"] = encrypted_paymongo_checkout_session_id
 

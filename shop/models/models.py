@@ -23,3 +23,11 @@ class Admin(db.Model, UserMixin):
 
 
 #Create a model for Order
+class PendingOrder(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	firstname = db.Column(db.Text, nullable=False)
+	lastname = db.Column(db.Text, nullable=False)
+	email = db.Column(db.Text, nullable=False)
+	phone = db.Column(db.Text, nullable=False)
+	address = db.Column(db.Text, nullable=False)
+	postal_code = db.Column(db.Text, nullable=False)
