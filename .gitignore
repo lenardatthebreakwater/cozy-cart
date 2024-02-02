@@ -1,5 +1,6 @@
 env
 instance
+test.py
 shop/__pycache__
 shop/routes/__pycache__
 shop/forms/__pycache__

@@ -20,3 +20,6 @@ class Admin(db.Model, UserMixin):
 
 	def __repr__(self):
 		return f'<Admin: {self.name}>'
+
+
+#Create a model for Order

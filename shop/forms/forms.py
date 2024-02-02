@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, FloatField, IntegerField, TextAreaField, SubmitField, ValidationError
-from wtforms.validators import DataRequired, Length, EqualTo
+from wtforms.validators import DataRequired, Length, EqualTo, Email
 from flask_wtf.file import FileField, FileAllowed
 from shop.models import Product, Admin
 
@@ -41,13 +41,26 @@ class AdminAddProductForm(FlaskForm):
 
 
 class AdminUpdateProductForm(FlaskForm):
-	name = StringField("Product Name", validators=[DataRequired(), Length(min=1)])
+	name = StringField("Product Name", validators=[DataRequired()])
 	cost = FloatField("Cost", validators=[DataRequired()])
 	stock = IntegerField("Stock", validators=[DataRequired()])
-	description = TextAreaField("Description", validators=[DataRequired(), Length(min=1)])
+	description = TextAreaField("Description", validators=[DataRequired()])
 	image_file = FileField("New Product Image", validators=[FileAllowed(["png", "jpg", "jpeg"])])
 	submit = SubmitField("Update Product")
+
 
 class AddToCartForm(FlaskForm):
   quantity = IntegerField("Quantity", validators=[DataRequired()])
   submit = SubmitField("Add to Cart")
+
+
+class CheckoutForm(FlaskForm):
+	firstname = StringField("First Name", validators=[DataRequired()])
+	lastname = StringField("Last Name", validators=[DataRequired()])
+	email = StringField("Email", validators=[DataRequired(), Email()])
+	phone = StringField("Phone", validators=[DataRequired()])
+	line1 = StringField("Line 1", validators=[DataRequired()])
+	city = StringField("City", validators=[DataRequired()])
+	state = StringField("State", validators=[DataRequired()])
+	country = StringField("Country", validators=[DataRequired()])
+	submit = SubmitField("Proceed To Checkout")
