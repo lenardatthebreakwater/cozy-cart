@@ -1,25 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
 			{% if session["cart"] %}
-			{% for cart_item in session["cart"] %}
-			<article>
-				<p>{{cart_item["name"]}}</p>
-				<p>{{cart_item["cost"] * cart_item["quantity"]}}</p>
-				<p>{{cart_item["quantity"]}}</p>
-			</article>
-			{% endfor %}
-			{% endif %}
 
-			<button id="checkoutFormOpenBtn" class="js-modal-trigger">Checkout</button>
+			<table class="table is-bordered">
+				<thead>
+					<tr>
+						<th>Product Name</th>
+						<th>Cost</th>
+						<th>Quantity</th>
+						<th></th>
+					</tr>
+				</thead>
+				{% for cart_item in session["cart"] %}
+				<tbody>
+					<tr>
+						<td>{{cart_item["name"]}}</td>
+						<td>{{cart_item["cost"] * cart_item["quantity"]}}</td>
+						<td>{{cart_item["quantity"]}}</td>
+						<td><a href="{{url_for('product_blueprint.removefromcart', product_id=cart_item['id'])}}" class="button is-info">Remove from Cart</a></td>
+					</tr>
+				</tbody>
+				{% endfor %}
+			</table>
+
+			<button id="checkoutFormOpenBtn" class="button is-danger">Checkout</button>
 
 			<div id="checkoutForm" class="modal">
   				<div class="modal-background"></div>
-  					<div class="modal-content">
+  					<div class="modal-content has-text-centered">
     					<form action="{{url_for('cart_blueprint.checkout')}}" method="post">
 							{{form.hidden_tag()}}
 
                 			<div class="field is-size-5">
-                    			{{ form.firstname.label}}
+                    			{{ form.firstname.label(class="has-text-white")}}
                     			<div class="control">
                     				{{ form.firstname(class="is-size-6 p-1") }}
                     			</div>
@@ -31,7 +44,7 @@
                 			</div>
 
             				<div class="field mb-3">
-                				{{ form.lastname.label(class="is-size-5") }}
+                				{{ form.lastname.label(class="has-text-white") }}
                 				<div class="control">
                     				{{ form.lastname(class="is-size-6 p-1") }}
                 				</div>
@@ -43,7 +56,7 @@
             					</div>
 
             				<div class="field mb-3">
-                				{{ form.email.label(class="is-size-5") }}
+                				{{ form.email.label(class="has-text-white") }}
                 				<div class="control">
                     				{{ form.email(class="is-size-6 p-1") }}
                 				</div>
@@ -55,7 +68,7 @@
             				</div>
 
             				<div class="field mb-3">
-                				{{ form.phone.label(class="is-size-5") }}
+                				{{ form.phone.label(class="has-text-white") }}
                 				<div class="control">
                 					{{ form.phone(class="is-size-6 p-1") }}
                 				</div>
@@ -67,7 +80,7 @@
             				</div>
 
                 			<div class="field mb-3">
-                    			{{ form.line1.label(class="is-size-5") }}
+                    			{{ form.line1.label(class="has-text-white") }}
                     			<div class="control">
                         			{{ form.line1(class="is-size-6 p-1") }}
                     			</div>
@@ -79,7 +92,7 @@
                 			</div>
 
                 			<div class="field mb-3">
-                    			{{ form.state.label(class="is-size-5") }}
+                    			{{ form.state.label(class="has-text-white") }}
                     			<div class="control">
                         			{{ form.state(class="is-size-6 p-1") }}
                     			</div>
@@ -91,7 +104,7 @@
                 			</div>
 
                 			<div class="field mb-3">
-                    			{{ form.country.label(class="is-size-5") }}
+                    			{{ form.country.label(class="has-text-white") }}
                     			<div class="control">
                         			{{ form.country(class="is-size-6 p-1") }}
                     			</div>
@@ -102,9 +115,16 @@
                     			{% endif %} 
                 			</div>
 
-							{{ form.submit(class="button is-danger") }}
+							{{ form.submit(class="button is-danger mt-4") }}
 						</form>
   					</div>
   				<button id="checkoutFormCloseBtn" class="modal-close is-large" aria-label="close"></button>
 			</div>
+
+			{% else %}
+			<div class="notification is-info">
+				You don't have anything in the cart yet
+			</div>
+
+			{% endif %}
 {% endblock content %}

@@ -89,6 +89,6 @@ def checkout():
 
 @cart_blueprint.post("/cart/checkout/success")
 def checkout_success():
-  session["cart"].clear()
+  session.clear()
   #Expire the paymongo checkout session object using the paymongo checkout session id stored in the session
   return render_template("checkout_success.html")
