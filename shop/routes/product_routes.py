@@ -58,7 +58,10 @@ def addtocart(product_id):
 @product_blueprint.get("/product/<int:product_id>/removefromcart")
 def removefromcart(product_id):
   product = Product.query.get_or_404(product_id)
-  for cart_item in session["cart"]:
+  cart = session["cart"]
+  session.pop("cart")
+  for cart_item in cart:
     if cart_item["id"] == product_id:
-      session["cart"].remove(cart_item)
+      cart.remove(cart_item)
+  session["cart"] = cart
   return redirect(url_for("cart_blueprint.cart"))
