@@ -14,7 +14,8 @@ cart_blueprint = Blueprint("cart_blueprint", __name__)
 
 @cart_blueprint.get("/cart")
 def cart():
-  return render_template("cart.html", title="Cart")
+  form = CheckoutForm()
+  return render_template("cart.html", title="Cart", form=form)
 
 
 @cart_blueprint.post("/cart/checkout")
@@ -81,7 +82,7 @@ def checkout():
       session["checkout_session_id"] = encrypted_paymongo_checkout_session_id
 
     return redirect(response_dict["data"]["attributes"]["checkout_url"])
-  
+
   else:
     abort(500)
 

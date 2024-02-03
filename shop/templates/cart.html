@@ -9,4 +9,102 @@
 			</article>
 			{% endfor %}
 			{% endif %}
+
+			<button id="checkoutFormOpenBtn" class="js-modal-trigger">Checkout</button>
+
+			<div id="checkoutForm" class="modal">
+  				<div class="modal-background"></div>
+  					<div class="modal-content">
+    					<form action="{{url_for('cart_blueprint.checkout')}}" method="post">
+							{{form.hidden_tag()}}
+
+                			<div class="field is-size-5">
+                    			{{ form.firstname.label}}
+                    			<div class="control">
+                    				{{ form.firstname(class="is-size-6 p-1") }}
+                    			</div>
+                    			{% if form.firstname.errors %}
+                    				{% for error in form.firstname.errors %}
+                            			<span class="has-text-danger">{{ error }}</span>
+                        			{% endfor %}
+                    			{% endif %} 
+                			</div>
+
+            				<div class="field mb-3">
+                				{{ form.lastname.label(class="is-size-5") }}
+                				<div class="control">
+                    				{{ form.lastname(class="is-size-6 p-1") }}
+                				</div>
+                				{% if form.lastname.errors %}
+                					{% for error in form.lastname.errors %}
+                    					<span class="has-text-danger">{{ error }}</span>
+                					{% endfor %}
+                				{% endif %} 
+            					</div>
+
+            				<div class="field mb-3">
+                				{{ form.email.label(class="is-size-5") }}
+                				<div class="control">
+                    				{{ form.email(class="is-size-6 p-1") }}
+                				</div>
+                				{% if form.email.errors %}
+                    				{% for error in form.email.errors %}
+                        				<span class="has-text-danger">{{ error }}</span>
+                    				{% endfor %}
+                				{% endif %} 
+            				</div>
+
+            				<div class="field mb-3">
+                				{{ form.phone.label(class="is-size-5") }}
+                				<div class="control">
+                					{{ form.phone(class="is-size-6 p-1") }}
+                				</div>
+                				{% if form.phone.errors %}
+                    				{% for error in form.phone.errors %}
+                        				<span class="has-text-danger">{{ error }}</span>
+                    				{% endfor %}
+                				{% endif %} 
+            				</div>
+
+                			<div class="field mb-3">
+                    			{{ form.line1.label(class="is-size-5") }}
+                    			<div class="control">
+                        			{{ form.line1(class="is-size-6 p-1") }}
+                    			</div>
+                    			{% if form.line1.errors %}
+                       				{% for error in form.line1.errors %}
+                            			<span class="has-text-danger">{{ error }}</span>
+                        			{% endfor %}
+                    			{% endif %} 
+                			</div>
+
+                			<div class="field mb-3">
+                    			{{ form.state.label(class="is-size-5") }}
+                    			<div class="control">
+                        			{{ form.state(class="is-size-6 p-1") }}
+                    			</div>
+                    			{% if form.state.errors %}
+                       				{% for error in form.state.errors %}
+                            			<span class="has-text-danger">{{ error }}</span>
+                        			{% endfor %}
+                    			{% endif %} 
+                			</div>
+
+                			<div class="field mb-3">
+                    			{{ form.country.label(class="is-size-5") }}
+                    			<div class="control">
+                        			{{ form.country(class="is-size-6 p-1") }}
+                    			</div>
+                    			{% if form.country.errors %}
+                       				{% for error in form.country.errors %}
+                            			<span class="has-text-danger">{{ error }}</span>
+                        			{% endfor %}
+                    			{% endif %} 
+                			</div>
+
+							{{ form.submit(class="button is-danger") }}
+						</form>
+  					</div>
+  				<button id="checkoutFormCloseBtn" class="modal-close is-large" aria-label="close"></button>
+			</div>
 {% endblock content %}
