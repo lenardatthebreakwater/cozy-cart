@@ -20,6 +20,14 @@ body {
     object-fit: cover;
 }
 
+.medium-img {
+    width: 350px;
+    max-width: 350px;
+    height: 350px;
+    max-height: 350px;
+    object-fit: cover;
+}
+
 @media (max-width: 700px) {
     .my-textarea {
         width: 525px;

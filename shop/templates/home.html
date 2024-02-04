@@ -15,7 +15,7 @@
 				{% for product in products %}
 				<article class="column is-4 pr-4">
 					<a href="{{url_for('product_blueprint.product', product_id=product.id)}}">
-						<img src="{{url_for('static', filename='product_images/'+product.img_filename)}}">
+						<img src="{{url_for('static', filename='product_images/'+product.img_filename)}}" class="medium-img">
 					</a>
 					<p><strong class="is-size-6">{{product.name}}</strong></p>
 					<p>{{product.cost}}</p>

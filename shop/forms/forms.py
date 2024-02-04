@@ -63,4 +63,5 @@ class CheckoutForm(FlaskForm):
 	city = StringField("City", validators=[DataRequired()])
 	state = StringField("State", validators=[DataRequired()])
 	country = StringField("Country", validators=[DataRequired()])
+	postal_code = StringField("Postal Code", validators=[DataRequired()])
 	submit = SubmitField("Proceed To Checkout")

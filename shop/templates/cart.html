@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 			{% if session["cart"] %}
-
+			<div class="columns">
+			<div class="column">
 			<table class="table is-bordered">
 				<thead>
 					<tr>
@@ -22,103 +23,127 @@
 				</tbody>
 				{% endfor %}
 			</table>
+			</div>
 
-			<button id="checkoutFormOpenBtn" class="button is-danger">Checkout</button>
+			<div class="column has-text-centered">
+    			<form action="{{url_for('cart_blueprint.cart')}}" method="post" class="columns">
+					{{form.hidden_tag()}}
 
-			<div id="checkoutForm" class="modal">
-  				<div class="modal-background"></div>
-  					<div class="modal-content has-text-centered">
-    					<form action="{{url_for('cart_blueprint.checkout')}}" method="post">
-							{{form.hidden_tag()}}
+					<div class="column">
+                		<div class="field mb-3">
+                    		{{ form.firstname.label}}
+                    		<div class="control">
+                    			{{ form.firstname(class="is-size-6 p-1") }}
+                    		</div>
+                    		{% if form.firstname.errors %}
+                    			{% for error in form.firstname.errors %}
+                            		<span class="has-text-danger">{{ error }}</span>
+                        		{% endfor %}
+                    		{% endif %} 
+                		</div>
 
-                			<div class="field is-size-5">
-                    			{{ form.firstname.label(class="has-text-white")}}
-                    			<div class="control">
-                    				{{ form.firstname(class="is-size-6 p-1") }}
-                    			</div>
-                    			{% if form.firstname.errors %}
-                    				{% for error in form.firstname.errors %}
-                            			<span class="has-text-danger">{{ error }}</span>
-                        			{% endfor %}
-                    			{% endif %} 
+            			<div class="field mb-3">
+                			{{ form.lastname.label }}
+                			<div class="control">
+                    			{{ form.lastname(class="is-size-6 p-1") }}
                 			</div>
+                			{% if form.lastname.errors %}
+                				{% for error in form.lastname.errors %}
+                    				<span class="has-text-danger">{{ error }}</span>
+                				{% endfor %}
+                			{% endif %} 
+            			</div>
 
-            				<div class="field mb-3">
-                				{{ form.lastname.label(class="has-text-white") }}
-                				<div class="control">
-                    				{{ form.lastname(class="is-size-6 p-1") }}
-                				</div>
-                				{% if form.lastname.errors %}
-                					{% for error in form.lastname.errors %}
-                    					<span class="has-text-danger">{{ error }}</span>
-                					{% endfor %}
-                				{% endif %} 
-            					</div>
-
-            				<div class="field mb-3">
-                				{{ form.email.label(class="has-text-white") }}
-                				<div class="control">
-                    				{{ form.email(class="is-size-6 p-1") }}
-                				</div>
-                				{% if form.email.errors %}
-                    				{% for error in form.email.errors %}
-                        				<span class="has-text-danger">{{ error }}</span>
-                    				{% endfor %}
-                				{% endif %} 
-            				</div>
-
-            				<div class="field mb-3">
-                				{{ form.phone.label(class="has-text-white") }}
-                				<div class="control">
-                					{{ form.phone(class="is-size-6 p-1") }}
-                				</div>
-                				{% if form.phone.errors %}
-                    				{% for error in form.phone.errors %}
-                        				<span class="has-text-danger">{{ error }}</span>
-                    				{% endfor %}
-                				{% endif %} 
-            				</div>
-
-                			<div class="field mb-3">
-                    			{{ form.line1.label(class="has-text-white") }}
-                    			<div class="control">
-                        			{{ form.line1(class="is-size-6 p-1") }}
-                    			</div>
-                    			{% if form.line1.errors %}
-                       				{% for error in form.line1.errors %}
-                            			<span class="has-text-danger">{{ error }}</span>
-                        			{% endfor %}
-                    			{% endif %} 
+            			<div class="field mb-3">
+                			{{ form.email.label }}
+                			<div class="control">
+                    			{{ form.email(class="is-size-6 p-1") }}
                 			</div>
+                			{% if form.email.errors %}
+                    			{% for error in form.email.errors %}
+                        			<span class="has-text-danger">{{ error }}</span>
+                    			{% endfor %}
+                			{% endif %} 
+            			</div>
 
-                			<div class="field mb-3">
-                    			{{ form.state.label(class="has-text-white") }}
-                    			<div class="control">
-                        			{{ form.state(class="is-size-6 p-1") }}
-                    			</div>
-                    			{% if form.state.errors %}
-                       				{% for error in form.state.errors %}
-                            			<span class="has-text-danger">{{ error }}</span>
-                        			{% endfor %}
-                    			{% endif %} 
+            			<div class="field mb-3">
+                			{{ form.phone.label }}
+                			<div class="control">
+                				{{ form.phone(class="is-size-6 p-1") }}
                 			</div>
+                			{% if form.phone.errors %}
+                    			{% for error in form.phone.errors %}
+                        			<span class="has-text-danger">{{ error }}</span>
+                    			{% endfor %}
+                			{% endif %} 
+            			</div>
+            		</div>
 
-                			<div class="field mb-3">
-                    			{{ form.country.label(class="has-text-white") }}
-                    			<div class="control">
-                        			{{ form.country(class="is-size-6 p-1") }}
-                    			</div>
-                    			{% if form.country.errors %}
-                       				{% for error in form.country.errors %}
-                            			<span class="has-text-danger">{{ error }}</span>
-                        			{% endfor %}
-                    			{% endif %} 
-                			</div>
+            		<div class="column">
+                		<div class="field mb-3">
+                    		{{ form.line1.label }}
+                    		<div class="control">
+                        		{{ form.line1(class="is-size-6 p-1") }}
+                    		</div>
+                    		{% if form.line1.errors %}
+                       			{% for error in form.line1.errors %}
+                            		<span class="has-text-danger">{{ error }}</span>
+                        		{% endfor %}
+                    		{% endif %} 
+                		</div>
 
-							{{ form.submit(class="button is-danger mt-4") }}
-						</form>
-  					</div>
-  				<button id="checkoutFormCloseBtn" class="modal-close is-large" aria-label="close"></button>
+                		<div class="field mb-3">
+                    		{{ form.city.label }}
+                    		<div class="control">
+                        		{{ form.city(class="is-size-6 p-1") }}
+                    		</div>
+                    		{% if form.city.errors %}
+                       			{% for error in form.city.errors %}
+                            		<span class="has-text-danger">{{ error }}</span>
+                        		{% endfor %}
+                    		{% endif %} 
+                		</div>
+
+                		<div class="field mb-3">
+                    		{{ form.state.label }}
+                    		<div class="control">
+                        		{{ form.state(class="is-size-6 p-1") }}
+                    		</div>
+                    		{% if form.state.errors %}
+                       			{% for error in form.state.errors %}
+                            		<span class="has-text-danger">{{ error }}</span>
+                        		{% endfor %}
+                    		{% endif %} 
+                		</div>
+
+                		<div class="field mb-3">
+                    		{{ form.country.label }}
+                    		<div class="control">
+                        		{{ form.country(class="is-size-6 p-1") }}
+                    		</div>
+                    		{% if form.country.errors %}
+                       			{% for error in form.country.errors %}
+                            		<span class="has-text-danger">{{ error }}</span>
+                        		{% endfor %}
+                    		{% endif %} 
+                		</div>
+
+                		<div class="field mb-3">
+                    		{{ form.postal_code.label }}
+                    		<div class="control">
+                        		{{ form.postal_code(class="is-size-6 p-1") }}
+                    		</div>
+                    		{% if form.postal_code.errors %}
+                       			{% for error in form.postal_code.errors %}
+                            		<span class="has-text-danger">{{ error }}</span>
+                        		{% endfor %}
+                    		{% endif %} 
+                		</div>
+
+                		{{ form.submit(class="button is-danger mt-4") }}
+                	</div>
+				</form>
+			</div>
 			</div>
 
 			{% else %}
