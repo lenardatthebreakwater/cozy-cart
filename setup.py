@@ -1,8 +1,6 @@
-from cryptography.fernet import Fernet
 try:
-	secret_key = Fernet.generate_key().decode()
 	with open(".env", "w") as file:
-		file.write(f"SECRET_KEY={secret_key}\nPAYMONGO_SECRET_KEY=<your paymongo secret key>\n")
+		file.write(f"SECRET_KEY=<Your made-up secret key for the application>\nPAYMONGO_SECRET_KEY=<your paymongo secret key>\n")
 	print(".env file successfully created!")
 except Exception as e:
 	print("There was a problem creating the .env file: {e}")

@@ -1,4 +1,5 @@
 .env
+venv
 instance
 shop/__pycache__
 shop/routes/__pycache__

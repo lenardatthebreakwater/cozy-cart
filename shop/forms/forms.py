@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, FloatField, IntegerField, TextAreaField, SubmitField, ValidationError
+from wtforms import StringField, PasswordField, FloatField, IntegerField, SelectField, TextAreaField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, Length, EqualTo, Email
 from flask_wtf.file import FileField, FileAllowed
 from shop.models import Product, Admin
@@ -62,6 +62,6 @@ class CheckoutForm(FlaskForm):
 	line1 = StringField("Line 1", validators=[DataRequired()])
 	city = StringField("City", validators=[DataRequired()])
 	state = StringField("State", validators=[DataRequired()])
-	country = StringField("Country", validators=[DataRequired()])
+	country = SelectField("Country", choices=[("PH", "Philippines")], coerce=str, validators=[DataRequired()])
 	postal_code = StringField("Postal Code", validators=[DataRequired()])
 	submit = SubmitField("Proceed To Checkout")

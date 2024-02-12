@@ -6,7 +6,7 @@ import os
 
 load_dotenv()
 
-def paymongo_request(line1, city, state, postal_code, country, name, email, phone, line_items):
+def create_paymongo_checkout_session(line1, city, state, postal_code, country, name, email, phone, line_items):
 	url = "https://api.paymongo.com/v1/checkout_sessions"
 	payload = { "data": { "attributes":{
 		"billing": {

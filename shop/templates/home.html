@@ -10,8 +10,8 @@
         	{% endif %}
         	{% endwith %}
 
+        	{% if products %}
         	<div class="columns is-multiline my-3">
-				{% if products %}
 				{% for product in products %}
 				<article class="column is-4 pr-4">
 					<a href="{{url_for('product_blueprint.product', product_id=product.id)}}">
@@ -21,6 +21,12 @@
 					<p>{{product.cost}}</p>
 				</article>
 				{% endfor %}
-				{% endif %}
 			</div>
+
+			{% else %}
+			<div class="notification is-info">
+				There are currently no available products
+			</div>
+
+			{% endif %}
 {% endblock content %}
