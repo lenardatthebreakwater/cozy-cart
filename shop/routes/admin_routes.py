@@ -48,7 +48,7 @@ def admin_login():
       return redirect(url_for("admin_blueprint.admin_dashboard"))
     else:
       flash("Login unsuccessful, please check username or password", "danger")
-      return redirect(url_for('admin_blueprint.login'))
+      return redirect(url_for('admin_blueprint.admin_login'))
   return render_template("admin_login.html", title="Admin Login", form=form, admins=admins) 
 
 
