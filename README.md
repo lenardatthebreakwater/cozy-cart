@@ -1,6 +1,6 @@
 # Cozy Cart
 
-A simple ecommerce application that uses Flask, Sqlite and Paymongo Checkout API for the backend and HTML and Bulma for the frontend.
+A simple ecommerce web application that's built using Python, Flask, Sqlite and Paymongo Checkout API for the backend and HTML and Bulma for the frontend.
 
 ![cozy_cart_preview](https://github.com/lenardatthebreakwater/cozy-cart/assets/142602437/0e10b67a-bfe9-48ee-814f-76efdd14400b)
 
