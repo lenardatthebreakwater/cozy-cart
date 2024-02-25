@@ -26,7 +26,7 @@ def create_paymongo_checkout_session(line1, city, state, postal_code, country, n
     	"send_email_receipts": True,
     	"show_line_items": True
     }}}
-	paymongo_secret_key = os.getenv("PAYMONGO_SECRET_KEY")
+	paymongo_secret_key = os.getenv("PAYMONGO_SECRET")
 	b64encoded_paymongo_secret_key = base64.b64encode(paymongo_secret_key.encode()).decode()
 	headers = {"Accept": "application/json", "Content-Type": "application/json", "Authorization": f"Basic {b64encoded_paymongo_secret_key}"}
 	response = requests.post(url, json=payload, headers=headers)
