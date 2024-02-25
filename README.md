@@ -51,10 +51,12 @@ To create an Admin Acount go to `http://127.0.0.1:8080/admin/register`.
 
 ![cozy_cart_admin_register](https://github.com/lenardatthebreakwater/cozy-cart/assets/142602437/f2ed7a1f-2811-4ba6-972e-1e68260650b9)
 
-\Once created you can now go to `http://127.0.0.1:8080/admin/login` in order to login.
+\
+Once created you can now go to `http://127.0.0.1:8080/admin/login` in order to login.
 
 ![cozy_cart_admin_login](https://github.com/lenardatthebreakwater/cozy-cart/assets/142602437/a70196b9-6ab4-41dc-a56a-5a4a4f4c8177)
 
-\Once logged in you will be redirected to `http://127.0.0.1:8080/admin/dashboard`.
+\
+Once logged in you will be redirected to `http://127.0.0.1:8080/admin/dashboard`.
 
 ![cozy_cart_admin_dashboard](https://github.com/lenardatthebreakwater/cozy-cart/assets/142602437/30d208db-38bc-402d-a1f1-04d85aed50f7)
